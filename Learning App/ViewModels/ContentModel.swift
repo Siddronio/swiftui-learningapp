@@ -28,7 +28,7 @@ class ContentModel: ObservableObject {
             let jsonData = try Data(contentsOf: jsonUr1!)
             
             // Try to decode the JSON into an array of modules
-            let jsonDecoder = JSONDecoder()
+            let jsonDecoder = JSONDecoder() // Calling the decode method on a JSONDecoder() will sometimes throw and error if the JSON does not match the model you are trying to parse into. Make sure to handle the error appropriately, such as using a do, catch block!
             let modules = try jsonDecoder.decode([Module].self, from: jsonData)
         
             // Assign parsed modules to modules property
