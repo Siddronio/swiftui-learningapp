@@ -25,14 +25,28 @@ struct HomeView: View {
                         ForEach(model.modules) { module in
                             
                             VStack (spacing: 20) {
-                                // Learning Card
-                                HomeViewRow(
-                                    image: module.content.image,
-                                    title: "Learn \(module.category)",
-                                    description: module.content.description,
-                                    count: "\(module.content.lessons.count) Lessons",
-                                    time: module.content.time
-                                )
+                                
+                                /*
+                                 Essentialy, when the user taps in the card, it's going to go to ContentView and the it's going to run the method beginModule, that is going to essentialy set the current module property (@Published var currentModule:Module?) and we need to reference the ContentModel inside the ContentView.)
+                                 */
+                                
+                                NavigationLink {
+                                    ContentView()
+                                        .onAppear {
+                                            model.beginModule(module.id)
+                                        }
+                                } label: {
+                                    // Learning Card
+                                    HomeViewRow(
+                                        image: module.content.image,
+                                        title: "Learn \(module.category)",
+                                        description: module.content.description,
+                                        count: "\(module.content.lessons.count) Lessons",
+                                        time: module.content.time
+                                    )
+                                }
+
+                               
                                 
                                 // Test Card
                                 HomeViewRow(
@@ -46,12 +60,15 @@ struct HomeView: View {
                         }
                         
                     }
+                    .accentColor(.black)
                     .padding()
+                    
                     
                 }
             }
             .navigationTitle("Get Started")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
