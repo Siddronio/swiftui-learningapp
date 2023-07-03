@@ -22,6 +22,7 @@
 		5271C8962A49CF1700E75B1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5271C8952A49CF1700E75B1E /* ContentView.swift */; };
 		52904EF42A51EF8900276E5B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52904EF32A51EF8900276E5B /* Constants.swift */; };
 		52904EF62A51FDE300276E5B /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52904EF52A51FDE300276E5B /* CodeTextView.swift */; };
+		529F964C2A52F70500C7F19E /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529F964B2A52F70500C7F19E /* RectangleCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		5271C8952A49CF1700E75B1E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52904EF32A51EF8900276E5B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52904EF52A51FDE300276E5B /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CodeTextView.swift; path = ../../../../../../../../../../../CodeTextView.swift; sourceTree = "<group>"; };
+		529F964B2A52F70500C7F19E /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				524982772A4CE5BA001AC9D2 /* ContentViewRow.swift */,
 				524982792A4E3342001AC9D2 /* ContentDetailView.swift */,
 				52904EF52A51FDE300276E5B /* CodeTextView.swift */,
+				529F964B2A52F70500C7F19E /* RectangleCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				52904EF62A51FDE300276E5B /* CodeTextView.swift in Sources */,
 				5271C88A2A40F63D00E75B1E /* ContentModel.swift in Sources */,
 				5271C8902A499D2C00E75B1E /* Models.swift in Sources */,
+				529F964C2A52F70500C7F19E /* RectangleCard.swift in Sources */,
 				52904EF42A51EF8900276E5B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +370,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,6 +399,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

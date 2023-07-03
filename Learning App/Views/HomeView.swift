@@ -30,41 +30,41 @@ struct HomeView: View {
                                  Essentialy, when the user taps in the card, it's going to go to ContentView and the it's going to run the method beginModule, that is going to essentialy set the current module property (@Published var currentModule:Module?) and we need to reference the ContentModel inside the ContentView.)
                                  */
                                 
-                                NavigationLink {
-                                    ContentView()
-                                        .onAppear {
+                                NavigationLink(
+                                    destination:
+                                        ContentView()
+                                        .onAppear(perform: {
                                             model.beginModule(module.id)
-                                        }
-                                } label: {
-                                    // Learning Card
-                                    HomeViewRow(
-                                        image: module.content.image,
-                                        title: "Learn \(module.category)",
-                                        description: module.content.description,
-                                        count: "\(module.content.lessons.count) Lessons",
-                                        time: module.content.time
-                                    )
-                                }
-
-                               
-                                
-                                // Test Card
-                                HomeViewRow(
-                                    image: module.test.image,
-                                    title: "\(module.category) Test",
-                                    description: module.test.description,
-                                    count: "\(module.test.questions.count) Lessons",
-                                    time: module.test.time
-                                )
+                                        }),
+                                    tag: module.id,
+                                    selection: $model.currentContentSelected,
+                                    label: {
+                                        // Learning Card
+                                        HomeViewRow(
+                                            image: module.content.image,
+                                            title: "Learn \(module.category)",
+                                            description: module.content.description,
+                                            count: "\(module.content.lessons.count) Lessons",
+                                            time: module.content.time
+                                        )
+                                    })
                             }
+                            
+                            // Test Card
+                            HomeViewRow(
+                                image: module.test.image,
+                                title: "\(module.category) Test",
+                                description: module.test.description,
+                                count: "\(module.test.questions.count) Lessons",
+                                time: module.test.time
+                            )
                         }
-                        
                     }
-                    .accentColor(.black)
-                    .padding()
-                    
                     
                 }
+                .accentColor(.black)
+                .padding()                
+                
             }
             .navigationTitle("Get Started")
         }
