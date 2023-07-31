@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentViewRow: View {
     
     @EnvironmentObject var model:ContentModel
+    // We create a subview from ContentView to keep the things separately, for that is necessary to create a index just like the object model above
     var index:Int
     
     var body: some View {
@@ -42,3 +43,4 @@ struct ContentViewRow: View {
     }
 }
 
+// We remove the preview because currentModule won't be set.

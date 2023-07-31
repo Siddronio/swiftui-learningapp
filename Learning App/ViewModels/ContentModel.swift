@@ -10,31 +10,36 @@ import Foundation
 class ContentModel: ObservableObject {
     
     // List of modules
-    @Published var modules = [Module]()
+    @Published var modules = [Module]() // Initialize with a empty array of Modules.
     
     
     // Keep track of selected module through this ViewModel
     /*
      Whe are established that our view model is going to keep in track of all of state, wich module the users is currently on, wich lesson their  viewing, so on and so forth. This is going make easier for the user to transition from lesson to lesson without forcing them to go back up to the lesson list in order to select the next one.
      */
-    
-    // Current Module
+    // Current module property
     @Published var currentModule:Module?
-    
-    // Keep track of a current module index
+    // Keep track of a current module index we're looking at
     var currentModuleIndex = 0
     
     // Current Lesson
     @Published var currentLesson:Lesson?
     var currentLessonIndex = 0
     
+    // Current Question
+    @Published var currentQuestion:Question?
+    var currentQuestionIndex = 0
+    
     // Current lesson explanation
-    @Published var lessonDescription = NSAttributedString()
+    @Published var codeText = NSAttributedString() // Is necessary update this property were we set the current lesson (func nextLesson())
+    // Creating a optional property of the style.html to use later when parsing if we need.
+    var styleData:Data?
     
     // Current selected content and test
     @Published var currentContentSelected:Int?
+    @Published var currentTestSelected:Int? // After concluded the questions, when hit the "done", take the user back to beginning
     
-    var styleData:Data?
+    
     
     init() {
         
@@ -53,7 +58,8 @@ class ContentModel: ObservableObject {
             let jsonData = try Data(contentsOf: jsonUr1!)
             
             // Try to decode the JSON into an array of modules
-            let jsonDecoder = JSONDecoder() // Calling the decode method on a JSONDecoder() will sometimes throw and error if the JSON does not match the model you are trying to parse into. Make sure to handle the error appropriately, such as using a do, catch block!
+            // Calling the decode method on a JSONDecoder() will sometimes throw and error if the JSON does not match the model you are trying to parse into. Make sure to handle the error appropriately, such as using a do, catch block!
+            let jsonDecoder = JSONDecoder()
             let modules = try jsonDecoder.decode([Module].self, from: jsonData)
             
             // Assign parsed modules to modules property
@@ -96,7 +102,7 @@ class ContentModel: ObservableObject {
             }
         }
         
-        // Set the current index
+        // Set the current module property
         currentModule = modules[currentModuleIndex]
         
     }
@@ -114,8 +120,8 @@ class ContentModel: ObservableObject {
         
         // Set the current lesson and the current explanation
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
-        // We need to turn this HTML string into an attributed string, so we create a helper function (addStyling)
-        lessonDescription = addStyling(currentLesson!.explanation)
+        // lessonDescription = currentLesson?.explanation - We need to turn this HTML string into an attributed string, so we create a helper function (addStyling), check on the Mark: Code Styling
+        codeText = addStyling(currentLesson!.explanation)
     }
     
     func nextLesson() {
@@ -128,15 +134,13 @@ class ContentModel: ObservableObject {
             
             // Set the current lesson property and explanation
             currentLesson = currentModule!.content.lessons[currentLessonIndex]
-            lessonDescription = addStyling(currentLesson!.explanation)
+            codeText = addStyling(currentLesson!.explanation)
         }
         else {
             // Reset the lesson state
             currentLessonIndex = 0
             currentLesson = nil
         }
-        
-        
     }
     
     func hasNextLession() -> Bool {
@@ -144,14 +148,33 @@ class ContentModel: ObservableObject {
         /*
          // A way to write the check
          if currentLessonIndex + 1 < currentModule!.content.lessons.count {
-         return true
+            return true
          }
          else {
-         return false
+            return false
          }
          */
         // The easier way
         return (currentLessonIndex + 1 < currentModule!.content.lessons.count)
+    }
+    
+    func beginTest(_ moduleId:Int) {
+        
+        // Set the current module
+        beginModule(moduleId)
+        
+        // Set the current question index
+        currentQuestionIndex = 0
+        
+        // If there are questions, set the current question to the first one
+        if currentModule?.test.questions.count ?? 0 > 0 {
+            currentQuestion = currentModule?.test.questions[currentQuestionIndex]
+            
+            // Set the question content
+            codeText = addStyling(currentQuestion!.content)
+        }
+        
+        
     }
     
     // MARK: - Code Styling

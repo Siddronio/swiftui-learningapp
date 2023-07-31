@@ -33,7 +33,7 @@ struct HomeViewRow: View {
                 Image(image)
                     .resizable()
                     .frame(width: 116, height: 116)
-                    .clipShape(Circle())
+                    .clipShape(Circle()) // Anything you put in here it's going to clip it for that shape, in this case is a circle.
                 
                 Spacer()
                 

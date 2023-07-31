@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RectangleCard: View {
     
+    // To make the rectangle dynamic, we create this property
     var color = Color(.white)
     
     var body: some View {

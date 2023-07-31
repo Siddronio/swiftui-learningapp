@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5244ED482A755EB200884B5D /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED472A755EB200884B5D /* CodeTextView.swift */; };
+		5244ED662A77C57A00884B5D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244ED652A77C57A00884B5D /* TestView.swift */; };
 		524982782A4CE5BA001AC9D2 /* ContentViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524982772A4CE5BA001AC9D2 /* ContentViewRow.swift */; };
 		5249827A2A4E3342001AC9D2 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524982792A4E3342001AC9D2 /* ContentDetailView.swift */; };
 		5249827D2A4E39F8001AC9D2 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5249827C2A4E39F8001AC9D2 /* AVKit.framework */; };
@@ -21,11 +23,12 @@
 		5271C8922A49C23500E75B1E /* HomeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5271C8912A49C23500E75B1E /* HomeViewRow.swift */; };
 		5271C8962A49CF1700E75B1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5271C8952A49CF1700E75B1E /* ContentView.swift */; };
 		52904EF42A51EF8900276E5B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52904EF32A51EF8900276E5B /* Constants.swift */; };
-		52904EF62A51FDE300276E5B /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52904EF52A51FDE300276E5B /* CodeTextView.swift */; };
 		529F964C2A52F70500C7F19E /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529F964B2A52F70500C7F19E /* RectangleCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5244ED472A755EB200884B5D /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
+		5244ED652A77C57A00884B5D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		524982772A4CE5BA001AC9D2 /* ContentViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewRow.swift; sourceTree = "<group>"; };
 		524982792A4E3342001AC9D2 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		5249827C2A4E39F8001AC9D2 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -41,7 +44,6 @@
 		5271C8912A49C23500E75B1E /* HomeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRow.swift; sourceTree = "<group>"; };
 		5271C8952A49CF1700E75B1E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52904EF32A51EF8900276E5B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		52904EF52A51FDE300276E5B /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CodeTextView.swift; path = ../../../../../../../../../../../CodeTextView.swift; sourceTree = "<group>"; };
 		529F964B2A52F70500C7F19E /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +123,8 @@
 				5271C8952A49CF1700E75B1E /* ContentView.swift */,
 				524982772A4CE5BA001AC9D2 /* ContentViewRow.swift */,
 				524982792A4E3342001AC9D2 /* ContentDetailView.swift */,
-				52904EF52A51FDE300276E5B /* CodeTextView.swift */,
+				5244ED652A77C57A00884B5D /* TestView.swift */,
+				5244ED472A755EB200884B5D /* CodeTextView.swift */,
 				529F964B2A52F70500C7F19E /* RectangleCard.swift */,
 			);
 			path = Views;
@@ -230,11 +233,12 @@
 				5249827A2A4E3342001AC9D2 /* ContentDetailView.swift in Sources */,
 				5271C8772A40F2E300E75B1E /* Learning_App.swift in Sources */,
 				524982782A4CE5BA001AC9D2 /* ContentViewRow.swift in Sources */,
-				52904EF62A51FDE300276E5B /* CodeTextView.swift in Sources */,
 				5271C88A2A40F63D00E75B1E /* ContentModel.swift in Sources */,
 				5271C8902A499D2C00E75B1E /* Models.swift in Sources */,
 				529F964C2A52F70500C7F19E /* RectangleCard.swift in Sources */,
+				5244ED662A77C57A00884B5D /* TestView.swift in Sources */,
 				52904EF42A51EF8900276E5B /* Constants.swift in Sources */,
+				5244ED482A755EB200884B5D /* CodeTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

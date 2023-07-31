@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+// Remember to activate the AVKit.framework on the properties of the app under the general
 import AVKit
 
 struct ContentDetailView: View {
@@ -15,7 +16,7 @@ struct ContentDetailView: View {
     var body: some View {
         
         let lesson = model.currentLesson
-        // Optional Chaining and Nil Coalescing - Providing a option in case the lesson video is nil, if happens to be nil, set to a empty string
+        // Optional Chaining (lesson?.video) and Nil Coalescing (?? "") - Providing a option in case the lesson video is nil, if happens to be nil, set to a empty string
         let url = URL(string: Constants.videoHostUrl + (lesson?.video ?? ""))
         
         VStack {
@@ -44,7 +45,6 @@ struct ContentDetailView: View {
                         Text("Next Lesson: \(model.currentModule!.content.lessons[model.currentLessonIndex + 1].title)")
                             .foregroundColor(.white)
                             .bold()
-                        
                     }
                 }
             }
@@ -52,6 +52,7 @@ struct ContentDetailView: View {
                 // Show the complete button instead
                 Button {
                     // Take the user back to the homeview
+                    // Since the navigation is based on the selection binding, setting it to nil will unwind it back to the initial view.
                     model.currentContentSelected = nil
                     
                 } label: {
@@ -66,10 +67,7 @@ struct ContentDetailView: View {
                             .bold()
                     }
                 }
-                
             }
-            
-            
         }
         .padding()
         .navigationTitle(lesson?.title ?? "")
