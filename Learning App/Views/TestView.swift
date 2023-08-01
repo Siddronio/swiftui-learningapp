@@ -60,7 +60,7 @@ struct TestView: View {
                                         }
                                         // If this button is the answer I've selected and it's NOT the correct one, then show a red rectangle card
                                         else if index == selectedAnswerIndex &&
-                                                index != model.currentQuestion!.correctIndex {
+                                                    index != model.currentQuestion!.correctIndex {
                                             
                                             // Show a red background
                                             RectangleCard(color: .red)
@@ -77,14 +77,13 @@ struct TestView: View {
                                             RectangleCard(color: .white)
                                                 .frame(height: 48)
                                         }
-                            
                                     }
-                                    
-                                    
                                     Text(model.currentQuestion!.answers[index])
-                                        
+                                    
                                 }
+                                
                             }
+                            // You can use the .disabled modifier on a button and pass in a boolean value to determine whether or not the button will work
                             // Disabled the button if the answer is already submitted, so .disabled is going to be true if submitted is true
                             .disabled(submitted)
                         }
@@ -93,15 +92,30 @@ struct TestView: View {
                     .padding()
                 }
                 
-                // Submit Button
+                // Submit Button - It will be used to submit the answers and move to the next question
                 Button {
                     
-                    // Change the submitted state to true
-                    submitted = true
-                    
-                    // Check the answer and increment the counter if correct
-                    if selectedAnswerIndex == model.currentQuestion!.correctIndex {
-                        numCorrect += 1
+                    // Check if answer has been submitted
+                    if submitted == true {
+                       // Answer has already been submitted, move to the next question
+                        model.nextQuestion()
+                        
+                        // Reset properties
+                        submitted = false
+                        selectedAnswerIndex = nil
+                        
+                    }
+                    else {
+                        // Submit the answer
+                        
+                        
+                        // Change the submitted state to true
+                        submitted = true
+                        
+                        // Check the answer and increment the counter if correct
+                        if selectedAnswerIndex == model.currentQuestion!.correctIndex {
+                            numCorrect += 1
+                        }
                     }
                     
                 } label: {
@@ -109,29 +123,48 @@ struct TestView: View {
                         RectangleCard(color: .green)
                             .frame(height: 48)
                         
-                        Text("Submit")
+                        Text(buttonText)
                             .foregroundColor(.white)
                             .bold()
                     }
                     .padding()
+                    
                 }
                 // If I haven't selected any answer, I shouldn't be able to hit submit, so if (selectedAnswerIndex == nil) is true, this button is going to be disabled.
                 .disabled(selectedAnswerIndex == nil)
-
-                
             }
             .navigationTitle("\(model.currentModule?.category ?? "") Test")
+            
         }
         else {
             // Test hasn't loaded yet
             ProgressView()
         }
-
+    }
+    
+    // Computed Property - provides a getter and an optional setter to indirectly access other properties and values.
+    var buttonText:String {
+        
+        // Check if answer has been submitted
+        if submitted == true {
+            if model.currentQuestionIndex + 1 == model.currentModule!.test.questions.count {
+                // This is the last question
+                return "Finish"
+            }
+            else {
+                // There is a next question
+                return "Next"
+            }
+        }
+        else {
+            return "Submit"
+        }
     }
 }
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         TestView()
+            .environmentObject(ContentModel())
     }
 }
