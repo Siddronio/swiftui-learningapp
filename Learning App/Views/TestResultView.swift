@@ -44,6 +44,7 @@ struct TestResultView: View {
 
             Spacer()
             
+            // Converting Int values to Double values will allow us to get decimals
             Text("You got \(numCorrect) out of \(model.currentModule?.test.questions.count ?? 0) questions")
             
             Spacer()

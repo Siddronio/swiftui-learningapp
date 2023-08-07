@@ -43,7 +43,13 @@ class ContentModel: ObservableObject {
     
     init() {
         
+        // Both of these methods below are going to append and parse the data into the modules property, wich is a published property. So whenever new data gets added into this array, any view code that depends on this, like our HomeView for example, it's going to get notified and we're going to see those modules pop up.
+        
+        // Parse local included JSON data
         getLocalData()
+        
+        // Download remote JSON file and parse data
+        getRemoteData()
     }
     
     // MARK: - Data Methods
@@ -85,6 +91,64 @@ class ContentModel: ObservableObject {
             // TODO log error
             print("Couldn't parse local data")
         }
+    }
+    
+    func getRemoteData() {
+        
+        // String path
+        let urlString = "https://siddronio.github.io/learningapp-data/data2.json"
+        
+        // Create a url object (not local)
+        let url = URL(string: urlString)
+        
+        guard url != nil else {
+            // Couldn't create a url
+            return
+        }
+        
+        // Create a URLRequest object
+        // Force unwrap because we checked above with the guard
+        let request = URLRequest(url: url!)
+        
+        // With the request above, we can the use something called URL Session to kick off that request and also provide some code to run when that request returns with the data.
+        
+        // Get the session and kick off the task
+        // This class URLSession coordinates network related tasks and we don't need to create a new instance of this class, because there is a property which returns a singleton session object (.shared). We can use the URLSession to fire off requests and work with any response such as returned JSONs.
+        let session = URLSession.shared
+        
+        // We're going to use this dataTask where we can pass in the URL request to fire off and the we also can specify what happens when it comes back
+        // Remember that class URLSession returns a URLSessionDataTask type, to keep track on that, we need to create a constant (let dataTask)
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            
+            // The code below, until the catch, is what we do in response to the requests coming back
+            // Check if there's an error
+            guard error == nil else {
+                // There was an error
+                return
+            }
+            
+            do {
+                // Handle the response
+                // Create a JSON decoder
+                let decoder = JSONDecoder()
+                
+                // Decode
+                // The JSON data is inside the parameter "data" on dataTask
+                // Force unwrap because we checked above with the guard error
+                let modules = try decoder.decode([Module].self, from: data!)
+                
+                // Append parsed modules into modules property. We're append into the array instead of overwriting because the remote data, getRemoteData(), gets called after the getLocalData()
+                self.modules += modules
+            }
+            catch {
+                print("Couldn't parse JSON")
+            }
+            
+        }
+        
+        // Kick off the data task
+        dataTask.resume()
+        
     }
     
     // MARK: - Module Navigation Methods
@@ -148,10 +212,10 @@ class ContentModel: ObservableObject {
         /*
          // A way to write the check
          if currentLessonIndex + 1 < currentModule!.content.lessons.count {
-            return true
+         return true
          }
          else {
-            return false
+         return false
          }
          */
         // The easier way
@@ -191,7 +255,7 @@ class ContentModel: ObservableObject {
             // If not, then reset the properties
             currentQuestionIndex = 0
             currentQuestion = nil
-        }            
+        }
     }
     
     // MARK: - Code Styling
@@ -220,12 +284,12 @@ class ContentModel: ObservableObject {
          Technique 2 (If you need catch and handle the error)
          
          do {
-             let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-             
-             resultString = attributedString
+         let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+         
+         resultString = attributedString
          }
          catch {
-             print("Couldn't turn html into attibuted string")
+         print("Couldn't turn html into attibuted string")
          }
          */
         

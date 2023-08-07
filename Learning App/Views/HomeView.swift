@@ -66,14 +66,14 @@ struct HomeView: View {
                                             time: module.test.time
                                         )
                                     }
-                            }                                                        
+                            }
+                            .padding(.bottom, 10)
                         }
                     }
-                    
+                    .accentColor(.black)
+                    .padding()
+
                 }
-                .accentColor(.black)
-                .padding()                
-                
             }
             .navigationTitle("Get Started")
         }
