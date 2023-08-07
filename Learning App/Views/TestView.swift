@@ -10,12 +10,18 @@ import SwiftUI
 struct TestView: View {
     
     @EnvironmentObject var model:ContentModel
+    
     // Track the answer selected
     @State var selectedAnswerIndex:Int?
-    // Track the score of correct answers
-    @State var numCorrect = 0
+    
     // Check the state wheter is submitted or not
     @State var submitted = false
+    
+    // Track the score of correct answers
+    @State var numCorrect = 0
+
+    
+    
     
     var body: some View {
         
@@ -137,8 +143,8 @@ struct TestView: View {
             
         }
         else {
-            // Test hasn't loaded yet
-            ProgressView()
+            // If the current question is nil, we show the result view
+           TestResultView(numCorrect: numCorrect)
         }
     }
     
